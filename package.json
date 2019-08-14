@@ -1,5 +1,5 @@
 {
-    "version": "1.0.0",
+    "version": "1.0.1",
     "scripts": {
         "build": "webpack --mode production",
         "start": "webpack-dev-server"
@@ -13,7 +13,7 @@
         "webpack-dev-server": "^3.2.1"
     },
     "dependencies": {
-        "@arction/lcjs": "^1.0.0",
+        "@arction/lcjs": "^1.0.1",
         "@arction/xydata": "^1.0.0",
         "clean-webpack-plugin": "^2.0.0",
         "webpack": "^4.29.6",
