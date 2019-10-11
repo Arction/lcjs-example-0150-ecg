@@ -9,6 +9,10 @@ const {
     lightningChart,
     DataPatterns,
     AxisScrollStrategies,
+    SolidLine,
+    SolidFill,
+    ColorHEX,
+    AutoCursorModes
 } = lcjs
 
 // Import data-generators from 'xydata'-library.
@@ -18,6 +22,29 @@ const {
 
 // Create a XY Chart.
 const chart = lightningChart().ChartXY({}).setTitle('ECG')
+
+// Add line series to visualize the data received
+const series = chart.addLineSeries({ dataPattern: DataPatterns.horizontalProgressive })
+// Style the series
+series
+    .setStrokeStyle( new SolidLine({
+        thickness: 2,
+        fillStyle: new SolidFill({ color: ColorHEX( '#5aafc7' ) })
+    }))
+    .setMouseInteractions(false)
+
+chart.setAutoCursorMode( AutoCursorModes.disabled )
+
+// Setup view nicely.
+chart.getDefaultAxisY()
+    .setTitle('mV')
+    .setInterval(-1600, 1000)
+    .setScrollStrategy(AxisScrollStrategies.expansion)
+
+chart.getDefaultAxisX()
+    .setTitle('milliseconds')
+    .setInterval(0, 2500)
+    .setScrollStrategy(AxisScrollStrategies.progressive)
 
 // Points that are used to generate a continuous stream of data.
 const point = [
@@ -1609,14 +1636,6 @@ const point = [
     { x: 1587, y: 82 }
 
 ]
-// Add line series to visualize the data received
-const series = chart.addLineSeries({ dataPattern: DataPatterns.horizontalProgressive })
-
-// Customize how the data will be shown at cursor for the line series.
-series.setResultTableFormatter((tableBuilder, series, x, y) => tableBuilder
-    .addRow('milliseconds', x.toFixed(1))
-    .addRow('mV', y.toFixed(0))
-)
 // Create a data generator to supply a continuous stream of data.
 createSampledDataGenerator(point, 1, 10)
     .setSamplingFrequency(1)
@@ -1627,16 +1646,6 @@ createSampledDataGenerator(point, 1, 10)
     .setStreamRepeat(true)
     .toStream()
     .forEach(point => {
+        // Push the created points to the series.
         series.add({ x: point.timestamp, y: point.data.y })
     })
-
-// Setup view nicely.
-chart.getDefaultAxisY()
-    .setTitle('mV')
-    .setInterval(-1600, 1000)
-    .setScrollStrategy(AxisScrollStrategies.expansion)
-
-chart.getDefaultAxisX()
-    .setTitle('milliseconds')
-    .setInterval(0, 2500)
-    .setScrollStrategy(AxisScrollStrategies.progressive)

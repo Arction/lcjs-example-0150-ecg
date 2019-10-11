@@ -17,7 +17,9 @@ The demo can be used as an example or a seed project. Local execution requires t
 
 ### Description
 
-This example shows how to display a generated ECG-signal by using a Line Series in a XY Chart.
+This example shows a simulated ECG-signal by using a Line Series in a XY Chart.
+
+The simulated signal pushes 960 points per second to the chart.
 
 ### API links
 
