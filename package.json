@@ -13,7 +13,7 @@
         "webpack-dev-server": "^3.9.0"
     },
     "dependencies": {
-        "@arction/lcjs": "^1.1.1",
+        "@arction/lcjs": "^1.2.0",
         "@arction/xydata": "^1.0.1",
         "clean-webpack-plugin": "^3.0.0",
         "webpack": "^4.41.2",
