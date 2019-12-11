@@ -1,4 +1,4 @@
-/**
+/*
  * LightningChartJS example that showcases a simulated ECG signal.
  */
 // Import LightningChartJS

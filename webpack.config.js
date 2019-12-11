@@ -1,5 +1,5 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const CleanWebpackPlugin = require('clean-webpack-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const path = require('path')
 
 const targetFolderName = 'dist'
@@ -50,10 +50,10 @@ module.exports = {
         runtimeChunk: 'single'
     },
     plugins: [
-    new CleanWebpackPlugin(),
-    new HtmlWebpackPlugin({
-        title: "app",
-        filename: path.resolve(__dirname, 'dist', 'index.html')
-    })
-]
+        new CleanWebpackPlugin(),
+        new HtmlWebpackPlugin({
+            title: "app",
+            filename: path.resolve(__dirname, 'dist', 'index.html')
+        })
+    ]
 }
