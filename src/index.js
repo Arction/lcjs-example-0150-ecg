@@ -27,13 +27,13 @@ const chart = lightningChart().ChartXY({}).setTitle('ECG')
 const series = chart.addLineSeries({ dataPattern: DataPatterns.horizontalProgressive })
 // Style the series
 series
-    .setStrokeStyle( new SolidLine({
+    .setStrokeStyle(new SolidLine({
         thickness: 2,
-        fillStyle: new SolidFill({ color: ColorHEX( '#5aafc7' ) })
+        fillStyle: new SolidFill({ color: ColorHEX('#5aafc7') })
     }))
     .setMouseInteractions(false)
 
-chart.setAutoCursorMode( AutoCursorModes.disabled )
+chart.setAutoCursorMode(AutoCursorModes.disabled)
 
 // Setup view nicely.
 chart.getDefaultAxisY()
