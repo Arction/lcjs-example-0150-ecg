@@ -1,5 +1,6 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 const path = require('path')
 
 const targetFolderName = 'dist'
@@ -18,7 +19,18 @@ module.exports = {
     },
     devServer: {
         contentBase: outputPath,
-        compress: true
+        compress: true,
+        // handle asset renaming
+        before: function(app, server, compiler){
+            app.get('/examples/assets/*', (req, res, next)=>{
+                if(req.originalUrl.match(/lcjs_example_\d*_\w*-/g)){
+                    res.redirect(req.originalUrl.replace(/lcjs_example_\d*_\w*-/g,''))
+                }
+                else{
+                    next()
+                }
+            })
+        }
     },
     resolve: {
         modules: [
@@ -54,6 +66,11 @@ module.exports = {
         new HtmlWebpackPlugin({
             title: "app",
             filename: path.resolve(__dirname, 'dist', 'index.html')
+        }),
+        new CopyWebpackPlugin({
+            patterns: [
+                { from: './assets/**/*', to: './examples/assets', flatten: true, noErrorOnMissing: true }
+            ]
         })
     ]
 }
