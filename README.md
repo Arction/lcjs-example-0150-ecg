@@ -28,10 +28,10 @@ ECG stands for electrocardiogram which is a simple test that can be used to chec
 
 ## API Links
 
-* XY cartesian chart: [ChartXY]
-* Line series: [LineSeries]
-* Data patterns: [DataPatterns]
-* Progressive trace data generator: [ProgressiveTraceGenerator]
+* [XY cartesian chart]
+* [Line series]
+* [Data patterns]
+* [Progressive trace data generator]
 
 
 ## Support
@@ -55,8 +55,8 @@ Direct developer email support can be purchased through a [Support Plan][4] or b
 © Arction Ltd 2009-2020. All rights reserved.
 
 
-[ChartXY]: https://www.arction.com/lightningchart-js-api-documentation/v1.3.0/classes/chartxy.html
-[LineSeries]: https://www.arction.com/lightningchart-js-api-documentation/v1.3.0/classes/lineseries.html
-[DataPatterns]: https://www.arction.com/lightningchart-js-api-documentation/v1.3.0/globals.html#datapatterns
-[ProgressiveTraceGenerator]: https://arction.github.io/xydata/classes/progressivetracegenerator.html
+[XY cartesian chart]: https://www.arction.com/lightningchart-js-api-documentation/v2.0.0/classes/chartxy.html
+[Line series]: https://www.arction.com/lightningchart-js-api-documentation/v2.0.0/classes/lineseries.html
+[Data patterns]: https://www.arction.com/lightningchart-js-api-documentation/v2.0.0/globals.html#datapatterns
+[Progressive trace data generator]: https://arction.github.io/xydata/classes/progressivetracegenerator.html
 

@@ -12,7 +12,8 @@ const {
     SolidLine,
     SolidFill,
     ColorHEX,
-    AutoCursorModes
+    AutoCursorModes,
+    Themes
 } = lcjs
 
 // Import data-generators from 'xydata'-library.
@@ -21,7 +22,9 @@ const {
 } = require('@arction/xydata')
 
 // Create a XY Chart.
-const chart = lightningChart().ChartXY({}).setTitle('ECG')
+const chart = lightningChart().ChartXY({
+    // theme: Themes.dark 
+}).setTitle('ECG')
 
 // Add line series to visualize the data received
 const series = chart.addLineSeries({ dataPattern: DataPatterns.horizontalProgressive })
