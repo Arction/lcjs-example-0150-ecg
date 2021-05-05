@@ -7,12 +7,10 @@ const lcjs = require('@arction/lcjs')
 // Extract required parts from LightningChartJS.
 const {
     lightningChart,
-    DataPatterns,
     AxisScrollStrategies,
     SolidLine,
     SolidFill,
     ColorHEX,
-    AutoCursorModes,
     Themes
 } = lcjs
 
@@ -26,8 +24,19 @@ const chart = lightningChart().ChartXY({
     // theme: Themes.dark 
 }).setTitle('ECG')
 
-// Add line series to visualize the data received
-const series = chart.addLineSeries({ dataPattern: DataPatterns.horizontalProgressive })
+// Create line series optimized for regular progressive X data.
+const series = chart.addLineSeries({
+    dataPattern: {
+        // pattern: 'ProgressiveX' => Each consecutive data point has increased X coordinate.
+        pattern: 'ProgressiveX',
+        // regularProgressiveStep: true => The X step between each consecutive data point is regular (for example, always `1.0`).
+        regularProgressiveStep: true,
+    }
+ })
+    // Destroy automatically outscrolled data (old data becoming out of scrolling axis range).
+    // Actual data cleaning can happen at any convenient time (not necessarily immediately when data goes out of range).
+    .setMaxPointCount(10000)
+
 // Style the series
 series
     .setStrokeStyle(new SolidLine({
@@ -35,8 +44,6 @@ series
         fillStyle: new SolidFill({ color: ColorHEX('#5aafc7') })
     }))
     .setMouseInteractions(false)
-
-chart.setAutoCursorMode(AutoCursorModes.disabled)
 
 // Setup view nicely.
 chart.getDefaultAxisY()
