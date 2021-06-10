@@ -1,6 +1,6 @@
-# ECG
+# JavaScript ECG Chart
 
-![ECG](ecg.png)
+![JavaScript ECG Chart](ecg.png)
 
 This demo application belongs to the set of examples for LightningChart JS, data visualization library for JavaScript.
 
