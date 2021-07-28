@@ -69,7 +69,8 @@ module.exports = {
         }),
         new CopyWebpackPlugin({
             patterns: [
-                { from: './assets/**/*', to: './examples/assets', flatten: true, noErrorOnMissing: true }
+                { from: './assets/**/*', to: './examples/assets', flatten: true, noErrorOnMissing: true },
+                { from: './node_modules/@arction/lcjs/dist/resources', to: 'resources', noErrorOnMissing: true },
             ]
         })
     ]

@@ -8,9 +8,6 @@ const lcjs = require('@arction/lcjs')
 const {
     lightningChart,
     AxisScrollStrategies,
-    SolidLine,
-    SolidFill,
-    ColorHEX,
     Themes
 } = lcjs
 
@@ -21,7 +18,7 @@ const {
 
 // Create a XY Chart.
 const chart = lightningChart().ChartXY({
-    // theme: Themes.dark 
+    // theme: Themes.darkGold 
 }).setTitle('ECG')
 
 // Create line series optimized for regular progressive X data.
@@ -36,13 +33,6 @@ const series = chart.addLineSeries({
     // Destroy automatically outscrolled data (old data becoming out of scrolling axis range).
     // Actual data cleaning can happen at any convenient time (not necessarily immediately when data goes out of range).
     .setMaxPointCount(10000)
-
-// Style the series
-series
-    .setStrokeStyle(new SolidLine({
-        thickness: 2,
-        fillStyle: new SolidFill({ color: ColorHEX('#5aafc7') })
-    }))
     .setMouseInteractions(false)
 
 // Setup view nicely.
