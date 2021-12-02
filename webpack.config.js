@@ -13,24 +13,9 @@ module.exports = {
     entry: {
         app: packageJSON.main
     },
-    node: {
-        buffer: false,
-        setImmediate: false
-    },
     devServer: {
-        contentBase: outputPath,
+        static: outputPath,
         compress: true,
-        // handle asset renaming
-        before: function(app, server, compiler){
-            app.get('/examples/assets/*', (req, res, next)=>{
-                if(req.originalUrl.match(/lcjs_example_\d*_\w*-/g)){
-                    res.redirect(req.originalUrl.replace(/lcjs_example_\d*_\w*-/g,''))
-                }
-                else{
-                    next()
-                }
-            })
-        }
     },
     resolve: {
         modules: [
@@ -48,15 +33,15 @@ module.exports = {
         splitChunks: {
             chunks: 'all',
             cacheGroups: {
-                // make separate 'vendor' chunk that contains any depenedencies
+                // make separate 'vendor' chunk that contains any dependencies
                 // allows for smaller file sizes and faster builds
                 vendor: {
-                    test: /node_modules/,
-                    chunks: 'initial',
-                    name: 'vendor',
-                    priority: 10,
-                    enforce: true
-                }
+                  test: /[\\/]node_modules[\\/]/,
+                  chunks: 'initial',
+                  name: 'vendor',
+                  priority: -10,
+                  reuseExistingChunk: true,
+                },
             }
         },
         runtimeChunk: 'single'
@@ -69,7 +54,7 @@ module.exports = {
         }),
         new CopyWebpackPlugin({
             patterns: [
-                { from: './assets/**/*', to: './examples/assets', flatten: true, noErrorOnMissing: true },
+                { from: './assets/**/*', to: `./examples/assets/${packageJSON.lightningChart.eID}/[name][ext]`, noErrorOnMissing: true },
                 { from: './node_modules/@arction/lcjs/dist/resources', to: 'resources', noErrorOnMissing: true },
             ]
         })
