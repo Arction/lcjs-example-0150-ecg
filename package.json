@@ -4,7 +4,7 @@
     "build": "webpack --mode production",
     "start": "webpack serve"
   },
-  "license": "Custom",
+  "license": "MIT",
   "private": true,
   "main": "./src/index.js",
   "devDependencies": {
@@ -17,7 +17,7 @@
     "webpack-stream": "^7.0.0"
   },
   "dependencies": {
-    "@arction/lcjs": "^3.4.0",
+    "@arction/lcjs": "^4.0.1",
     "@arction/xydata": "^1.4.0"
   },
   "lightningChart": {

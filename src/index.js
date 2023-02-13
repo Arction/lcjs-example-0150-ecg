@@ -4,46 +4,47 @@
 // Import LightningChartJS
 const lcjs = require('@arction/lcjs')
 
+// Import xydata
+const xydata = require('@arction/xydata')
+
 // Extract required parts from LightningChartJS.
-const {
-    lightningChart,
-    AxisScrollStrategies,
-    Themes
-} = lcjs
+const { lightningChart, AxisScrollStrategies, Themes } = lcjs
 
 // Import data-generators from 'xydata'-library.
-const {
-    createSampledDataGenerator
-} = require('@arction/xydata')
+const { createSampledDataGenerator } = xydata
 
 // Create a XY Chart.
-const chart = lightningChart().ChartXY({
-    // theme: Themes.darkGold 
-}).setTitle('ECG')
+const chart = lightningChart()
+    .ChartXY({
+        // theme: Themes.darkGold
+    })
+    .setTitle('ECG')
 
 // Create line series optimized for regular progressive X data.
-const series = chart.addLineSeries({
-    dataPattern: {
-        // pattern: 'ProgressiveX' => Each consecutive data point has increased X coordinate.
-        pattern: 'ProgressiveX',
-        // regularProgressiveStep: true => The X step between each consecutive data point is regular (for example, always `1.0`).
-        regularProgressiveStep: true,
-    }
- })
+const series = chart
+    .addLineSeries({
+        dataPattern: {
+            // pattern: 'ProgressiveX' => Each consecutive data point has increased X coordinate.
+            pattern: 'ProgressiveX',
+            // regularProgressiveStep: true => The X step between each consecutive data point is regular (for example, always `1.0`).
+            regularProgressiveStep: true,
+        },
+    })
     // Destroy automatically outscrolled data (old data becoming out of scrolling axis range).
     // Actual data cleaning can happen at any convenient time (not necessarily immediately when data goes out of range).
-    .setMaxPointCount(10000)
-    .setMouseInteractions(false)
+    .setDataCleaning({ minDataPointCount: 10000 })
 
 // Setup view nicely.
-chart.getDefaultAxisY()
+chart
+    .getDefaultAxisY()
     .setTitle('mV')
-    .setInterval(-1600, 1000)
+    .setInterval({ start: -1600, end: 1000, stopAxisAfter: false })
     .setScrollStrategy(AxisScrollStrategies.expansion)
 
-chart.getDefaultAxisX()
+chart
+    .getDefaultAxisX()
     .setTitle('milliseconds')
-    .setInterval(0, 2500)
+    .setInterval({ start: 0, end: 2500, stopAxisAfter: false })
     .setScrollStrategy(AxisScrollStrategies.progressive)
 
 // Points that are used to generate a continuous stream of data.
@@ -1633,8 +1634,7 @@ const point = [
     { x: 1584, y: 85 },
     { x: 1585, y: 89 },
     { x: 1586, y: 94 },
-    { x: 1587, y: 82 }
-
+    { x: 1587, y: 82 },
 ]
 // Create a data generator to supply a continuous stream of data.
 createSampledDataGenerator(point, 1, 10)
@@ -1645,7 +1645,7 @@ createSampledDataGenerator(point, 1, 10)
     .setStreamInterval(50)
     .setStreamRepeat(true)
     .toStream()
-    .forEach(point => {
+    .forEach((point) => {
         // Push the created points to the series.
         series.add({ x: point.timestamp, y: point.data.y })
     })
