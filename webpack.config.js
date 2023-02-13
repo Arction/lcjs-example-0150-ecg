@@ -2,6 +2,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const path = require("path");
+const webpack = require('webpack');
 
 const targetFolderName = "dist";
 const outputPath = path.resolve(__dirname, targetFolderName);
@@ -61,6 +62,9 @@ module.exports = {
           noErrorOnMissing: true,
         },
       ],
+    }),
+    new webpack.DefinePlugin({
+        LCJS_LICENSE: "'" + process.env.LCJS_LICENSE + "'",
     }),
   ],
 };

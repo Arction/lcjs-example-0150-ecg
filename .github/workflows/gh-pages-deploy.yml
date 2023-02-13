@@ -17,6 +17,8 @@ jobs:
           node-version: "16.x"
 
       - name: Build
+        env:
+          LCJS_LICENSE: ${{ secrets.LCJS_DEPLOY_LICENSE }}
         run: |
           npm install
           npm run build
