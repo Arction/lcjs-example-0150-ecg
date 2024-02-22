@@ -44,7 +44,7 @@ chart
 chart
     .getDefaultAxisX()
     .setTitle('milliseconds')
-    .setInterval({ start: 0, end: 2500, stopAxisAfter: false })
+    .setDefaultInterval((state) => ({ end: state.dataMax, start: (state.dataMax ?? 0) - 2500, stopAxisAfter: false }))
     .setScrollStrategy(AxisScrollStrategies.progressive)
 
 // Points that are used to generate a continuous stream of data.
