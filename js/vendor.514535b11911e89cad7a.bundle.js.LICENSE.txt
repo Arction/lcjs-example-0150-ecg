@@ -12,12 +12,3 @@ MERCHANTABLITY OR NON-INFRINGEMENT.
 See the Apache Version 2.0 License for specific language governing permissions
 and limitations under the License.
 ***************************************************************************** */
-
-/**
- * stacking-order by Rich Harris
- * https://github.com/Rich-Harris/stacking-order
- *
- * @license MIT
- *
- * Converted to TypeScript and edited to match LCJS requirements.
- */
