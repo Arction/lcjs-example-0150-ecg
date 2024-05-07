@@ -55,8 +55,8 @@ Direct developer email support can be purchased through a [Support Plan][4] or b
 © LightningChart Ltd 2009-2022. All rights reserved.
 
 
-[XY cartesian chart]: https://lightningchart.com/js-charts/api-documentation/v5.1.0/classes/ChartXY.html
-[Line series]: https://lightningchart.com/js-charts/api-documentation/v5.1.0/classes/LineSeries.html
-[Data patterns]: https://lightningchart.com/js-charts/api-documentation/v5.1.0/interfaces/DataPattern.html
+[XY cartesian chart]: https://lightningchart.com/js-charts/api-documentation/v5.2.0/classes/ChartXY.html
+[Line series]: https://lightningchart.com/js-charts/api-documentation/v5.2.0/classes/LineSeries.html
+[Data patterns]: https://lightningchart.com/js-charts/api-documentation/v5.2.0/interfaces/DataPattern.html
 [Progressive trace data generator]: https://arction.github.io/xydata/classes/progressivetracegenerator.html
 
