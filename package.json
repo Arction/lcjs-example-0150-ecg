@@ -17,8 +17,8 @@
     "webpack-stream": "^7.0.0"
   },
   "dependencies": {
-    "@arction/xydata": "^1.4.0",
-    "@arction/lcjs": "^5.2.0"
+    "@lightningchart/lcjs": "^6.0.0",
+    "@lightningchart/xydata": "^1.4.0"
   },
   "lightningChart": {
     "eID": "0150"

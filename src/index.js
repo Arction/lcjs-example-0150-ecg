@@ -2,10 +2,10 @@
  * LightningChartJS example that showcases a simulated ECG signal.
  */
 // Import LightningChartJS
-const lcjs = require('@arction/lcjs')
+const lcjs = require('@lightningchart/lcjs')
 
 // Import xydata
-const xydata = require('@arction/xydata')
+const xydata = require('@lightningchart/xydata')
 
 // Extract required parts from LightningChartJS.
 const { lightningChart, AxisScrollStrategies, Themes } = lcjs
@@ -32,6 +32,7 @@ const series = chart
             regularProgressiveStep: true,
         },
     })
+    .setName()
     // Destroy automatically outscrolled data (old data becoming out of scrolling axis range).
     // Actual data cleaning can happen at any convenient time (not necessarily immediately when data goes out of range).
     .setDataCleaning({ minDataPointCount: 10000 })
@@ -40,6 +41,7 @@ const series = chart
 chart
     .getDefaultAxisY()
     .setTitle('mV')
+    .setUnits('mV', { displayOnAxis: false })
     .setInterval({ start: -1600, end: 1000, stopAxisAfter: false })
     .setScrollStrategy(AxisScrollStrategies.expansion)
 
