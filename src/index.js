@@ -8,7 +8,7 @@ const lcjs = require('@lightningchart/lcjs')
 const xydata = require('@lightningchart/xydata')
 
 // Extract required parts from LightningChartJS.
-const { lightningChart, AxisScrollStrategies, Themes } = lcjs
+const { lightningChart, AxisScrollStrategies, emptyFill, Themes } = lcjs
 
 // Import data-generators from 'xydata'-library.
 const { createSampledDataGenerator } = xydata
@@ -24,18 +24,12 @@ const chart = lightningChart({
 
 // Create line series optimized for regular progressive X data.
 const series = chart
-    .addLineSeries({
-        dataPattern: {
-            // pattern: 'ProgressiveX' => Each consecutive data point has increased X coordinate.
-            pattern: 'ProgressiveX',
-            // regularProgressiveStep: true => The X step between each consecutive data point is regular (for example, always `1.0`).
-            regularProgressiveStep: true,
-        },
+    .addPointLineAreaSeries({
+        dataPattern: 'ProgressiveX',
     })
     .setName()
-    // Destroy automatically outscrolled data (old data becoming out of scrolling axis range).
-    // Actual data cleaning can happen at any convenient time (not necessarily immediately when data goes out of range).
-    .setDataCleaning({ minDataPointCount: 10000 })
+    .setMaxSampleCount(100_000)
+    .setAreaFillStyle(emptyFill)
 
 // Setup view nicely.
 chart
@@ -1651,5 +1645,5 @@ createSampledDataGenerator(point, 1, 10)
     .toStream()
     .forEach((point) => {
         // Push the created points to the series.
-        series.add({ x: point.timestamp, y: point.data.y })
+        series.appendSample({ x: point.timestamp, y: point.data.y })
     })
